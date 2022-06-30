@@ -1,5 +1,8 @@
 import React from "react";
 import styled from "@emotion/styled";
+import Listmodal from "./Listmodal";
+import { Button } from "@mui/material";
+import { color } from "@mui/system";
 
 const Moviecontainer = styled.div`
     display: flex;
@@ -42,11 +45,13 @@ const MovieInfo = styled.div`
     text-overflow: ellipsis;
 `;
 
+
 function Moviecomponent(props){
     const {Title, Year, imdbID, Type, Poster} = props.movie;
 
     return (
-        <Moviecontainer onClick={()=>props.onMovieSelect(imdbID)}>
+        <div>
+            <Moviecontainer onClick={()=>props.onMovieSelect(imdbID)}>
             <CoverImage src={Poster} />
             <MovieName >{Title}</MovieName>
             <InfoColumn>
@@ -54,6 +59,9 @@ function Moviecomponent(props){
                 <MovieInfo>Type: {Type}</MovieInfo>
             </InfoColumn>
         </Moviecontainer>
+        <Listmodal movie={props.movie}></Listmodal>
+        </div>
+        
     );
 }
 
