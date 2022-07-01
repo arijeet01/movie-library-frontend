@@ -4,7 +4,6 @@ import Moviecomponent from "./Moviecomponent";
 import axios from "axios";
 import Movieinfo from "./Movieinfo";
 
-
 const Container= styled.div`
     display: flex;
     flex-direction: column;
@@ -75,6 +74,10 @@ const MovieListContainer=styled.div`
     justify-content: space-evenly;
 `;
 
+const Logout = styled.button`
+    background-color: white;
+`;
+
 function Home(props){
 
     const [searchQuery, updateSearchQuery]= useState();
@@ -115,6 +118,7 @@ function Home(props){
                     <SearcIcon src="/search-icon.svg" />
                     <SearchInput placeholder="Search movie" value={searchQuery} onChange={onTextChange}/>
                 </SearchBox>
+                
             </Header>
             {selectedMovie && <Movieinfo selectedMovie={selectedMovie} apikey={props.apikey} onMovieSelect={onMovieSelect}/>}
             <MovieListContainer>
@@ -127,7 +131,6 @@ function Home(props){
                             />)
                         : null
                     }
-                    {favourites?.length ? <Fav>{props.user.name}'s List</Fav> : "No movie in your list yet! Search one to add to your list." }
                     
                     {favourites?.length ? 
                         favourites.map((favourite, index) =>

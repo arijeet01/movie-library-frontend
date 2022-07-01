@@ -3,6 +3,7 @@ import styled from "@emotion/styled";
 import { Button } from "@mui/material";
 import { color } from "@mui/system";
 import AddIcon from '@mui/icons-material/Add';
+import Listmodal from "./Listmodal";
 
 const Moviecontainer = styled.div`
     display: flex;
@@ -50,15 +51,6 @@ function Moviecomponent(props){
     const {Title, Year, imdbID, Type, Poster} = props.movie;
     
 
-  const btnStyle={  textAlign: "center",
-  marginTop: "5px",
-  width: "100%",
-  backgroundColor: '#0AA1DD',
-  border: "none",
-  outline: "none",
-  color: "white"
-};
-
 
 
     return (
@@ -71,7 +63,7 @@ function Moviecomponent(props){
                 <MovieInfo>Type: {Type}</MovieInfo>
             </InfoColumn>
         </Moviecontainer>
-        <Button style={btnStyle} onClick={()=>props.handleList(props.movie)}><AddIcon />Add to your list</Button>
+        <Listmodal movie={props.movie}/>
         </div>
         
     );
