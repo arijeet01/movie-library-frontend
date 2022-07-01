@@ -73,7 +73,6 @@ function Movieinfo(props){
         .then((response) => setMovieInfo(response.data));
 }, [selectedMovie]);
 
-    console.log(movieInfo);
     return (
         <Container>
             {movieInfo ? 

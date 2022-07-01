@@ -4,11 +4,15 @@ import Moviecomponent from "./Moviecomponent";
 import axios from "axios";
 import Movieinfo from "./Movieinfo";
 
+
 const Container= styled.div`
     display: flex;
     flex-direction: column;
 `;
 
+const Fav= styled.h1`
+        width: 100%;
+`;
 const Header= styled.div`
     display: flex;
     flex-direction: row;
@@ -77,6 +81,7 @@ function Home(props){
     const [timeoutId, updateTimeoutId]= useState();
     const [movieList, updateMovieList] = useState([]);
     const [selectedMovie, onMovieSelect] = useState();
+    const [favourites, setFavourites] = useState([]);
 
     const fetchData= async (searchString) => {
         const response= await axios.get(`
@@ -92,6 +97,11 @@ function Home(props){
             fetchData(event.target.value)
         , 500);
         updateTimeoutId(timeout);
+    };
+
+    const handleList = (movie) => {
+        const newFavouriteList = [...favourites, movie];
+        setFavourites(newFavouriteList);
     };
 
     return(
@@ -113,9 +123,21 @@ function Home(props){
                             <Moviecomponent key={index} 
                                             movie={movie} 
                                             onMovieSelect={onMovieSelect}
+                                            handleList={handleList}
                             />)
-                        : "No movies searched yet!"
+                        : null
                     }
+                    {favourites?.length ? <Fav>{props.user.name}'s List</Fav> : "No movie in your list yet! Search one to add to your list." }
+                    
+                    {favourites?.length ? 
+                        favourites.map((favourite, index) =>
+                         <Moviecomponent key={index} 
+                                        movie={favourite} 
+                                        onMovieSelect={onMovieSelect}
+                        />
+                        )
+                        : null
+                        }
             </MovieListContainer>
         </Container>
     );
