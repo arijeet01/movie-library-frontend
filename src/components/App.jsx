@@ -8,13 +8,17 @@ const apikey=process.env.REACT_APP_MOVIE_API_KEY;
 function App() {
 
   const [user, setUserLogin]=useState();
+  if (typeof(user) != "undefined")
+  localStorage.setItem('user', JSON.stringify(user));
+  
+  const user_var=localStorage.getItem('user');
 
   return (
     <div className="App">
          <BrowserRouter>
           <Routes>
             <Route path="/"  element={<Signinsignup setUserLogin={setUserLogin} />} />
-            <Route path="/home"  element={user && user._id ? <Home user={user} apikey={apikey}/>: <Signinsignup setUserLogin={setUserLogin} />} />
+            <Route path="/home"  element={ user_var ? <Home user={JSON.parse(user_var)} apikey={apikey}/>: <Signinsignup setUserLogin={setUserLogin} />} />
           </Routes>
          </BrowserRouter>
          

@@ -20,6 +20,7 @@ export default function Dropdown(props) {
           id="demo-simple-select"
           label="Privacy"
           onChange={handleChange}
+          required
         >
           <MenuItem value='public'>Public</MenuItem>
           <MenuItem value='private'>Private</MenuItem>

@@ -11,7 +11,7 @@ function Signup(){
 
     const [user, setUser] = useState({
         name: "",
-        email: "",
+        usrname: "",
         password: "",
         confirmpassword: ""
     })
@@ -32,7 +32,7 @@ function Signup(){
 
         setUser({
             name: "",
-            email: "",
+            username: "",
             password: "",
             confirmpassword: ""
         })
@@ -60,7 +60,7 @@ function Signup(){
                 <p>Please fill in the details to register!</p>
                 </Grid>
                 <TextField name="name" style={btnAndTextStyle} label="Name" placeholder="Enter your name" fullWidth="true" autoComplete="off" required value={user.name} onChange={handleChange}/>
-                <TextField name="email" style={btnAndTextStyle} type="email" label="Email" placeholder="Enter email" fullWidth="true" autoComplete="off" required value={user.email} onChange={handleChange}/>
+                <TextField name="username" style={btnAndTextStyle} type="email" label="Email" placeholder="Enter email" fullWidth="true" autoComplete="off" required value={user.email} onChange={handleChange}/>
                 <TextField name="password" style={btnAndTextStyle} type="password" label="Password" placeholder="Enter password" fullWidth="true" autoComplete="off" required value={user.password} onChange={handleChange}/>
                 <TextField name="confirmpassword" style={btnAndTextStyle} type="password" label="Confirm Password" placeholder="Confirm password" fullWidth="true" autoComplete="off" required value={user.confirmpassword} onChange={handleChange}/>
                 <Button type="submit" color="primary" fullWidth="true" variant="contained" style={btnAndTextStyle} onClick={register}>Sign Up</Button>

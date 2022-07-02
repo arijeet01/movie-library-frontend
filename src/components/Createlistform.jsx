@@ -15,10 +15,10 @@ function Createlistform(props){
         console.log(listname);
         console.log(privacy);
         console.log(props.movie);
+        console.log(props.user._id);
         const list={
-            //userid,
             //createURL,
-            //listID,
+            userId: props.user._id,
             listname: listname,
             privacy: privacy,
             movielist: props.movie
@@ -28,8 +28,9 @@ function Createlistform(props){
             .then( res=> { 
                 alert(res.data.message)
                 // props.setUserLogin(res.data.user);
-                
             });
+            props.handleClose();
+            props.closeListModal();
     }
 
     function onSelect(publicc){
@@ -43,9 +44,6 @@ function Createlistform(props){
                     onInput={ e=>setListname(e.target.value)}
                 />
                 <Dropdown onSelect={onSelect}/>
-                <TextField name="privacy" type='hidden' 
-                                ></TextField>
-                <TextField name="movieDetails" type='hidden'></TextField>
                 <Button type="submit" color="primary" fullWidth="true" variant="contained" style={btnAndTextStyle}>Create</Button>
                 
             </form>

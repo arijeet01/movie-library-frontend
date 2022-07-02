@@ -12,8 +12,6 @@ const style = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: '100%',
-  height: '100%',
   bgcolor: 'background.paper',
   border: '2px solid #000',
   boxShadow: 24,
@@ -39,6 +37,9 @@ const Close = styled.span`
   border-radius: 50%;
   cursor: pointer;
   opacity: 0.8;
+  position: absolute;
+  top: 2px;
+  right: 2px;
 `;
 
 
@@ -57,12 +58,11 @@ function Listmodal(props) {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-
+        <Close onClick={handleClose}>X</Close>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            <Addexistinglist/>
-            <Createlist movie={props.movie} />
+            <Addexistinglist movie={props.movie}/>
+            <Createlist movie={props.movie} user={props.user} closeListModal={handleClose}/>
           </Typography>
-          <Close onClick={handleClose}>X</Close>
         </Box>
       </Modal>
     </div>

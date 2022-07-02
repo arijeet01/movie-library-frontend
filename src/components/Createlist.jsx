@@ -5,7 +5,7 @@ import Createlistmodal from "./Createlistmodal";
 function Createlist(props){
     return(
         <div>
-            <Createlistmodal movie={props.movie}/>
+            <Createlistmodal movie={props.movie} user={props.user} closeListModal={props.closeListModal}/>
         </div>
     )
 }       

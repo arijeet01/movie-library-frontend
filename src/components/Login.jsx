@@ -11,7 +11,7 @@ function Login(props){
     const btnAndTextStyle={margin:'8px 0'};
 
     const [user, setUser] = useState({
-        email: "",
+        username: "",
         password: "",
     })
 
@@ -31,12 +31,13 @@ function Login(props){
     function login(){
         
         setUser({
-            email: "",
+            username: "",
             password: "",
         });
 
         axios.post("http://localhost:9002/login", user)
             .then( res=> { 
+                //  res.data.auth
                 alert(res.data.message)
                 props.setUserLogin(res.data.user);
                 navigate("/home");
@@ -53,7 +54,8 @@ function Login(props){
                 </Avatar>
                 <h2>Sign In</h2>
                 </Grid>
-                <TextField name="email" style={btnAndTextStyle}  type="email"  label="Email" placeholder="Enter username" fullWidth="true" autoComplete="off" required value={user.email} onChange={handleChange}/>
+          
+                <TextField name="username" style={btnAndTextStyle}  type="email"  label="Email" placeholder="Enter username" fullWidth="true" autoComplete="off" required value={user.email} onChange={handleChange}/>
                 <TextField name="password" style={btnAndTextStyle} type="password" label="Password" placeholder="Enter password" fullWidth="true" autoComplete="off" required value={user.password} onChange={handleChange}/>
                 <Button type="submit" color="primary" fullWidth="true" variant="contained" style={btnAndTextStyle} onClick={login}>Sign In</Button>
                 <Typography>Do you have an account?
@@ -61,6 +63,8 @@ function Login(props){
                                 Sign Up
                             </Link>
                 </Typography>
+
+                
            </Paper>
         </Grid>
     );

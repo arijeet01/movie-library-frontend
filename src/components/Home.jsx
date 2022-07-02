@@ -85,6 +85,8 @@ function Home(props){
     const [movieList, updateMovieList] = useState([]);
     const [selectedMovie, onMovieSelect] = useState();
     const [favourites, setFavourites] = useState([]);
+    const [lists, setLists] = useState();
+
 
     const fetchData= async (searchString) => {
         const response= await axios.get(`
@@ -92,6 +94,12 @@ function Home(props){
         );
         updateMovieList(response.data.Search)
     };
+   
+    axios.post("http://localhost:9002/list")
+        .then( res=> { 
+            setLists(res.data);
+        });
+
 
     function onTextChange(event){
         clearTimeout(timeoutId);
@@ -106,6 +114,7 @@ function Home(props){
         const newFavouriteList = [...favourites, movie];
         setFavourites(newFavouriteList);
     };
+    const stl={width: '100%'};
 
     return(
         <Container>
@@ -128,22 +137,32 @@ function Home(props){
                                             movie={movie} 
                                             onMovieSelect={onMovieSelect}
                                             handleList={handleList}
+                                            user={props.user}
                             />)
                         : null
                     }
-                    
-                    {favourites?.length ? 
-                        favourites.map((favourite, index) =>
-                         <Moviecomponent key={index} 
-                                        movie={favourite} 
-                                        onMovieSelect={onMovieSelect}
-                        />
-                        )
-                        : null
-                        }
+                   
             </MovieListContainer>
+             
+            {lists?.length 
+                        ? lists.map((list) => 
+                            <MovieListContainer>
+                            <h1 style={stl}>{list.listname}</h1>
+                            {list.movielist.map((movie, index) =>
+                            <Moviecomponent
+                                key={index} 
+                                movie={movie} 
+                                onMovieSelect={onMovieSelect}
+                                handleList={handleList}
+                                user={props.user}
+                            />)}
+                            </MovieListContainer> 
+                        ) 
+                        : null
+                    }
         </Container>
     );
 }
 
 export default Home;
+   
