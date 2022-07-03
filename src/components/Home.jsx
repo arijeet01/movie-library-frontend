@@ -152,19 +152,14 @@ function Home(props){
                                             user={props.user}
                                             add="true"
                             />)
-                        : null
-                    }
-                   
-            </MovieListContainer>
-             
-            {lists?.length 
-                        ? lists.map((list) => 
-                            <MovieListContainer>
-                            {list.movielist.length ?
+                        : lists?.length 
+                             ? lists.map((list) => 
+                                <MovieListContainer>
+                                {list.movielist.length ?
                                 <h1 style={stl}>{list.listname}</h1>: null
-                            }
-                            {list.movielist.map((movie, index) =>
-                             <Moviecomponent
+                                }
+                                {list.movielist.map((movie, index) =>
+                                <Moviecomponent
                                 key={index} 
                                 movie={movie} 
                                 onMovieSelect={onMovieSelect}
@@ -175,8 +170,11 @@ function Home(props){
                             }
                             </MovieListContainer> 
                         ) 
-                        : null
+                        : "Search and create your own lists!"
                     }
+                   
+            </MovieListContainer>
+         \
         </Container>
     );
 }
