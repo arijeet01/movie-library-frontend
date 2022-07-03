@@ -31,7 +31,7 @@ function Createlistform(props){
             });
             props.handleClose();
             props.closeListModal();
-          //  window.location.reload();
+           window.location.reload();
     }
 
     function onSelect(publicc){

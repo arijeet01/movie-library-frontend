@@ -34,7 +34,7 @@ function addExisting(list){
        
     }); 
      props.handleClose();
-  // window.location.reload();
+  window.location.reload();
 }
 
     return(
