@@ -59,10 +59,10 @@ function Listmodal(props) {
     .then( res=> { 
 
     });
-    axios.post("https://arijeetmoviehub.herokuapp.com/deletelist" )
-    .then( res=> { 
+    // axios.post("https://arijeetmoviehub.herokuapp.com/deletelist" )
+    // .then( res=> { 
 
-    });
+    // });
   }
 
   return (
