@@ -39,15 +39,14 @@ function Createlistform(props){
     }
     return(
         <div>
-            <form onSubmit={onSubmit}>
+            
                 <TextField name="listname" style={btnAndTextStyle} label="List Name" placeholder="Enter List name" fullWidth="true" autoComplete="off" required 
                    value={listname}
                     onInput={ e=>setListname(e.target.value)}
                 />
                 <Dropdown onSelect={onSelect}/>
-                <Button type="submit" color="primary" fullWidth="true" variant="contained" style={btnAndTextStyle}>Create</Button>
-                
-            </form>
+                <Button type="submit" onClick={onSubmit} color="primary" fullWidth="true" variant="contained" style={btnAndTextStyle}>Create</Button>
+            
         </div>
     )
 }
