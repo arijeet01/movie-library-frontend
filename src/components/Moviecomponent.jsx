@@ -63,7 +63,7 @@ function Moviecomponent(props){
                 <MovieInfo>Type: {Type}</MovieInfo>
             </InfoColumn>
         </Moviecontainer>
-        <Listmodal movie={props.movie} user={props.user}/>
+        <Listmodal movie={props.movie} user={props.user} add={props.add} list={props.list}/>
         </div>
         
     );

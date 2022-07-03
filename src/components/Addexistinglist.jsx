@@ -2,9 +2,11 @@ import { Button } from "@mui/material";
 import React from "react";
 import axios from "axios";
 import { useState } from "react";
+import { useEffect } from "react";
 
 function Addexistinglist(props){
     
+
 const btnStyle={  textAlign: "center",
 marginTop: "5px",
 width: "100%",
@@ -17,11 +19,12 @@ color: "white"
 const [lists, setLists] = useState();
 const [addd, setAdd]= useState('');
 
+        axios.post("http://localhost:9002/list",props.user )
+        .then( res=> { 
+            setLists(res.data);
+        });
 
-    axios.post("http://localhost:9002/list")
-.then( res=> { 
-    setLists(res.data);
-});
+
 
 function addExisting(list){
     const movie=props.movie;
@@ -30,6 +33,8 @@ function addExisting(list){
     .then( res=> { 
        
     }); 
+     props.handleClose();
+   window.location.reload();
 }
 
     return(

@@ -38,7 +38,7 @@ function Login(props){
         axios.post("http://localhost:9002/login", user)
             .then( res=> { 
                 //  res.data.auth
-                alert(res.data.message)
+                //alert(res.data.message)
                 props.setUserLogin(res.data.user);
                 navigate("/home");
             });

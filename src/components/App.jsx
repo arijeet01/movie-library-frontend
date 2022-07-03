@@ -13,12 +13,17 @@ function App() {
   
   const user_var=localStorage.getItem('user');
 
+   const Logout=()=>{
+    localStorage.removeItem('user');
+    window.location.reload();
+  };
+
   return (
     <div className="App">
          <BrowserRouter>
           <Routes>
             <Route path="/"  element={<Signinsignup setUserLogin={setUserLogin} />} />
-            <Route path="/home"  element={ user_var ? <Home user={JSON.parse(user_var)} apikey={apikey}/>: <Signinsignup setUserLogin={setUserLogin} />} />
+            <Route path="/home"  element={ user_var ? <Home user={JSON.parse(user_var)} apikey={apikey} Logout={Logout}/>: <Signinsignup setUserLogin={setUserLogin} />} />
           </Routes>
          </BrowserRouter>
          

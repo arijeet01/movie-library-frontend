@@ -3,15 +3,14 @@ import styled from "@emotion/styled";
 import Moviecomponent from "./Moviecomponent";
 import axios from "axios";
 import Movieinfo from "./Movieinfo";
+import { useEffect } from "react";
+import { Button } from "@mui/material";
 
 const Container= styled.div`
     display: flex;
     flex-direction: column;
 `;
 
-const Fav= styled.h1`
-        width: 100%;
-`;
 const Header= styled.div`
     display: flex;
     flex-direction: row;
@@ -45,7 +44,6 @@ const SearchBox = styled.div`
     background-color: white;
     border-radius: 6px;
     margin-left: 20px;
-    width: 50%;
     align-items: center;
     width: 300px;
     height: 25px;
@@ -74,9 +72,18 @@ const MovieListContainer=styled.div`
     justify-content: space-evenly;
 `;
 
-const Logout = styled.button`
-    background-color: white;
-`;
+const Logout={
+    textAlign: "center",
+    width: "150px",
+   height: "45px",
+backgroundColor: 'white',
+border: "none",
+outline: "none",
+color: "blue",
+marginLeft: "10px",
+};
+
+
 
 function Home(props){
 
@@ -84,7 +91,7 @@ function Home(props){
     const [timeoutId, updateTimeoutId]= useState();
     const [movieList, updateMovieList] = useState([]);
     const [selectedMovie, onMovieSelect] = useState();
-    const [favourites, setFavourites] = useState([]);
+    // const [favourites, setFavourites] = useState([]);
     const [lists, setLists] = useState();
 
 
@@ -94,11 +101,15 @@ function Home(props){
         );
         updateMovieList(response.data.Search)
     };
-   
-    axios.post("http://localhost:9002/list")
+    const user=props.user;
+   // console.log(user);
+        axios.post("http://localhost:9002/list",user )
         .then( res=> { 
             setLists(res.data);
         });
+
+
+    
 
 
     function onTextChange(event){
@@ -110,23 +121,24 @@ function Home(props){
         updateTimeoutId(timeout);
     };
 
-    const handleList = (movie) => {
-        const newFavouriteList = [...favourites, movie];
-        setFavourites(newFavouriteList);
-    };
+   
     const stl={width: '100%'};
-
+    const divStl={display: "flex", flexDirection: "row"}
     return(
         <Container>
             <Header>
                 <Apptitle>
                     <MovieImage src="/movie-icon.svg" />
                     Welcome {props.user.name}
-                </Apptitle>
-                <SearchBox>
+                </Apptitle>        
+                    <div style={divStl}>
+                    <SearchBox>
                     <SearcIcon src="/search-icon.svg" />
                     <SearchInput placeholder="Search movie" value={searchQuery} onChange={onTextChange}/>
-                </SearchBox>
+                     </SearchBox>
+                    <Button style={Logout} onClick={props.Logout}>Logout</Button>
+                    </div>    
+                
                 
             </Header>
             {selectedMovie && <Movieinfo selectedMovie={selectedMovie} apikey={props.apikey} onMovieSelect={onMovieSelect}/>}
@@ -136,8 +148,8 @@ function Home(props){
                             <Moviecomponent key={index} 
                                             movie={movie} 
                                             onMovieSelect={onMovieSelect}
-                                            handleList={handleList}
                                             user={props.user}
+                                            add="true"
                             />)
                         : null
                     }
@@ -147,15 +159,19 @@ function Home(props){
             {lists?.length 
                         ? lists.map((list) => 
                             <MovieListContainer>
-                            <h1 style={stl}>{list.listname}</h1>
+                            {list.movielist.length ?
+                                <h1 style={stl}>{list.listname}</h1>: null
+                            }
                             {list.movielist.map((movie, index) =>
-                            <Moviecomponent
+                             <Moviecomponent
                                 key={index} 
                                 movie={movie} 
                                 onMovieSelect={onMovieSelect}
-                                handleList={handleList}
                                 user={props.user}
-                            />)}
+                                add="false"
+                                list={list}
+                             />) 
+                            }
                             </MovieListContainer> 
                         ) 
                         : null

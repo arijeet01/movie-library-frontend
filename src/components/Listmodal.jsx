@@ -6,6 +6,7 @@ import Modal from '@mui/material/Modal';
 import styled from '@emotion/styled';
 import Addexistinglist from './Addexistinglist';
 import Createlist from './Createlist';
+import axios from 'axios';
 
 const style = {
   position: 'absolute',
@@ -48,9 +49,29 @@ function Listmodal(props) {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
+  function RemoveMovie(){
+    const movieAnduser={
+      movie: props.movie,
+      user: props.user,
+      list: props.list
+    };
+    axios.post("http://localhost:9002/removelist",movieAnduser )
+    .then( res=> { 
+
+    });
+    axios.post("http://localhost:9002/deletelist" )
+    .then( res=> { 
+
+    });
+  }
+
   return (
     <div>
-      <Button  style={btnStyle} id="addbtn" onClick={handleOpen}>+ Add to your list</Button>
+      {(props.add==="true") ?
+        <Button  style={btnStyle} id="addbtn" onClick={handleOpen}>+ Add to your list</Button>
+        : <Button  style={btnStyle} id="rmvbtn" onClick={RemoveMovie}>- Remove from your list</Button>
+        }
+      
       <Modal
         open={open}
         onClose={handleClose}
@@ -60,7 +81,7 @@ function Listmodal(props) {
         <Box sx={style}>
         <Close onClick={handleClose}>X</Close>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            <Addexistinglist movie={props.movie}/>
+            <Addexistinglist movie={props.movie} user={props.user} handleClose={handleClose}/>
             <Createlist movie={props.movie} user={props.user} closeListModal={handleClose}/>
           </Typography>
         </Box>
