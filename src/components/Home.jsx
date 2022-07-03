@@ -103,7 +103,7 @@ function Home(props){
     };
     const user=props.user;
    // console.log(user);
-        axios.post("http://localhost:9002/list",user )
+        axios.post("https://arijeetmoviehub.herokuapp.com/list",user )
         .then( res=> { 
             setLists(res.data);
         });

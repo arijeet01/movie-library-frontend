@@ -19,7 +19,7 @@ color: "white"
 const [lists, setLists] = useState();
 const [addd, setAdd]= useState('');
 
-        axios.post("http://localhost:9002/list",props.user )
+        axios.post("https://arijeetmoviehub.herokuapp.com/list",props.user )
         .then( res=> { 
             setLists(res.data);
         });
@@ -29,7 +29,7 @@ const [addd, setAdd]= useState('');
 function addExisting(list){
     const movie=props.movie;
     const existingList={list, movie};
-    axios.post("http://localhost:9002/addexisting", existingList )
+    axios.post("https://arijeetmoviehub.herokuapp.com/addexisting", existingList )
     .then( res=> { 
        
     }); 

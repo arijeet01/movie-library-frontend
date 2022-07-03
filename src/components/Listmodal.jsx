@@ -55,11 +55,11 @@ function Listmodal(props) {
       user: props.user,
       list: props.list
     };
-    axios.post("http://localhost:9002/removelist",movieAnduser )
+    axios.post("https://arijeetmoviehub.herokuapp.com/removelist",movieAnduser )
     .then( res=> { 
 
     });
-    axios.post("http://localhost:9002/deletelist" )
+    axios.post("https://arijeetmoviehub.herokuapp.com/deletelist" )
     .then( res=> { 
 
     });

@@ -38,7 +38,7 @@ function Signup(){
         })
 
         if(password===confirmpassword){
-            axios.post("http://localhost:9002/register", user)
+            axios.post("https://arijeetmoviehub.herokuapp.com/register", user)
             .then( res=> {
                 alert(res.data.message);
             });

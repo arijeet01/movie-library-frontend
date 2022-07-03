@@ -12,10 +12,10 @@ function Createlistform(props){
 
     function onSubmit(event){
         event.preventDefault();
-        console.log(listname);
-        console.log(privacy);
-        console.log(props.movie);
-        console.log(props.user._id);
+        // console.log(listname);
+        // console.log(privacy);
+        // console.log(props.movie);
+        // console.log(props.user._id);
         const list={
             //createURL,
             userId: props.user._id,
@@ -24,7 +24,7 @@ function Createlistform(props){
             movielist: props.movie
         }
 
-        axios.post("http://localhost:9002/createlist", list)
+        axios.post("https://arijeetmoviehub.herokuapp.com/createlist", list)
             .then( res=> { 
                 alert(res.data.message)
                 // props.setUserLogin(res.data.user);
