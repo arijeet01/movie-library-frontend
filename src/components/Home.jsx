@@ -96,8 +96,9 @@ function Home(props){
 
 
     const fetchData= async (searchString) => {
+        
         const response= await axios.get(`
-        http://www.omdbapi.com/?s=${searchString}&apikey=${props.apikey}`
+        https://www.omdbapi.com/?s=${searchString}&apikey=${props.apikey}`
         );
         updateMovieList(response.data.Search)
     };
