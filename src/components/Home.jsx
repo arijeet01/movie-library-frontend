@@ -5,6 +5,7 @@ import axios from "axios";
 import Movieinfo from "./Movieinfo";
 import { useEffect } from "react";
 import { Button } from "@mui/material";
+import ShareModal from "./ShareModal";
 
 const Container= styled.div`
     display: flex;
@@ -122,8 +123,8 @@ function Home(props){
         updateTimeoutId(timeout);
     };
 
-   
-    const stl={width: '100%'};
+  
+    const stl={width: '100%', display: "flex", flexDirection: "row"};
     const divStl={display: "flex", flexDirection: "row"}
     return(
         <Container>
@@ -156,7 +157,7 @@ function Home(props){
                              ? lists.map((list) => 
                                 <MovieListContainer>
                                 {list.movielist.length ?
-                                <h1 style={stl}>{list.listname}</h1>: null
+                                <h1 style={stl}>{list.listname} <ShareModal list={list}/></h1>: null
                                 }
                                 {list.movielist.map((movie, index) =>
                                 <Moviecomponent
