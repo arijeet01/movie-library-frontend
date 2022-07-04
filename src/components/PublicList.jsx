@@ -22,15 +22,8 @@ function PublicList(props){
     .then( res=> { 
         setList(res.data);
     });
-    const movielist=list.movielist;
     return (
-       <MovieListContainer>
-                    {movielist?.length
-                        ? movielist.map((movie, index) => 
-                            <Moviecomponent key={index} 
-                                            movie={movie} 
-                            />) : null }
-        </MovieListContainer>
+       <div>{list}</div>
     );
 }       
 
