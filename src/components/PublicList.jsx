@@ -1,8 +1,10 @@
 import React from "react";
+import { useParams } from "react-router-dom";
 
 function PublicList(){
+    const listname=useParams;
     return(<div>
-        Hello
+        Hello you are in {listname}
     </div>)
 }       
 

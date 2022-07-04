@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import Signinsignup from "../container/Signinsignup";
 import "../App.css"
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useParams } from "react-router-dom";
 import Home from "./Home";
 import PublicList from "./PublicList";
 const apikey=process.env.REACT_APP_MOVIE_API_KEY;
@@ -25,7 +25,7 @@ function App() {
           <Routes>
             <Route path="/"  element={<Signinsignup setUserLogin={setUserLogin} />} />
             <Route path="/home"  element={ user_var ? <Home user={JSON.parse(user_var)} apikey={apikey} Logout={Logout}/>: <Signinsignup setUserLogin={setUserLogin} />} />
-            <Route path="/list/public/SSR" element={<PublicList/>}/>
+            <Route path="/list/public/:listname" element={<PublicList />}/>
           </Routes>
          </BrowserRouter>
          
