@@ -22,10 +22,11 @@ function PublicList(props){
     .then( res=> { 
         setList(res.data);
     });
+    const movielist=list.movielist;
     return (
        <MovieListContainer>
-                    {list?.length
-                        ? list.map((movie, index) => 
+                    {movielist?.length
+                        ? movielist.map((movie, index) => 
                             <Moviecomponent key={index} 
                                             movie={movie} 
                             />) : null }
