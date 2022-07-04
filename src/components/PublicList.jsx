@@ -16,11 +16,11 @@ const MovieListContainer=styled.div`
 
 function PublicList(props){
     const {listname}=useParams();
-    const [list, setList] = useState();
-
+//     const [list, setList] = useState();
+let list={};
     axios.post("https://arijeetmoviehub.herokuapp.com/publiclist", listname)
     .then( res=> { 
-        setList(res.data);
+       list=res.data;
     });
     return (
        <div>{list}</div>
