@@ -25,7 +25,7 @@ function App() {
           <Routes>
             <Route path="/"  element={<Signinsignup setUserLogin={setUserLogin} />} />
             <Route path="/home"  element={ user_var ? <Home user={JSON.parse(user_var)} apikey={apikey} Logout={Logout}/>: <Signinsignup setUserLogin={setUserLogin} />} />
-            <Route path="/list/public/:listname" element={<PublicList />}/>
+            <Route path="/list/public/:listname" element={<PublicList listname={useParams()}/>}/>
           </Routes>
          </BrowserRouter>
          
