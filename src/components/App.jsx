@@ -3,6 +3,7 @@ import Signinsignup from "../container/Signinsignup";
 import "../App.css"
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./Home";
+import PublicList from "./PublicList";
 const apikey=process.env.REACT_APP_MOVIE_API_KEY;
 
 function App() {
