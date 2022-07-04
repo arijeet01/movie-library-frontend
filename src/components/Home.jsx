@@ -175,7 +175,7 @@ function Home(props){
                     }
                    
             </MovieListContainer>
-         \
+         
         </Container>
     );
 }
